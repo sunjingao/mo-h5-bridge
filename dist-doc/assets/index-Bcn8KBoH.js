@@ -1,0 +1,16 @@
+import{i as p,B as h,C as d}from"./main-DZxBhGij.js";import{d as m,r as j,o as c,c as o,b as s,e,w as l,u as _,a}from"./index-DOiZW0lW.js";/* empty css                                                            */const g=m({__name:"index.md.Virtual831be197",setup(i){p();async function t(){let n=await h.getAreas();console.log(n)}return(n,k)=>{const r=j("m-button");return c(),o("div",null,[s(" 在console中查看 "),e(r,{onClick:t},{default:l(()=>[s("检验")]),_:1})])}}}),u={class:"marked-body"},A=a("h2",{id:"getareas"},"getAreas",-1),C=a("p",null,"获取库存页面的区域",-1),B=a("h3",{id:"使用说明"},"使用说明",-1),f=a("pre",{class:"language-xml"},[a("code",{class:"hljs"},[a("span",{class:"hljs-tag"},[s("<"),a("span",{class:"hljs-name"},"template"),s(">")]),s(`
+  `),a("span",{class:"hljs-tag"},[s("<"),a("span",{class:"hljs-name"},"div"),s(">")]),s(`
+    在console中查看
+    `),a("span",{class:"hljs-tag"},[s("<"),a("span",{class:"hljs-name"},"m-button"),s(" @"),a("span",{class:"hljs-attr"},"click"),s("="),a("span",{class:"hljs-string"},'"handleCheck"'),s(">")]),s("检验"),a("span",{class:"hljs-tag"},[s("</"),a("span",{class:"hljs-name"},"m-button"),s(">")]),s(`
+  `),a("span",{class:"hljs-tag"},[s("</"),a("span",{class:"hljs-name"},"div"),s(">")]),s(`
+`),a("span",{class:"hljs-tag"},[s("</"),a("span",{class:"hljs-name"},"template"),s(">")]),s(`
+`),a("span",{class:"hljs-tag"},[s("<"),a("span",{class:"hljs-name"},"script"),s(),a("span",{class:"hljs-attr"},"lang"),s("="),a("span",{class:"hljs-string"},'"ts"'),s(),a("span",{class:"hljs-attr"},"setup"),s(">")]),a("span",{class:"language-javascript"},[s(`
+  `),a("span",{class:"hljs-keyword"},"import"),s(" { initBridge, "),a("span",{class:"hljs-title class_"},"Bridge"),s(" } "),a("span",{class:"hljs-keyword"},"from"),s(),a("span",{class:"hljs-string"},"'@/main'"),s(`
+
+  `),a("span",{class:"hljs-title function_"},"initBridge"),s(`()
+
+  `),a("span",{class:"hljs-keyword"},"async"),s(),a("span",{class:"hljs-keyword"},"function"),s(),a("span",{class:"hljs-title function_"},"handleCheck"),s("("),a("span",{class:"hljs-params"}),s(`) {
+    `),a("span",{class:"hljs-keyword"},"let"),s(" areas = "),a("span",{class:"hljs-keyword"},"await"),s(),a("span",{class:"hljs-title class_"},"Bridge"),s("."),a("span",{class:"hljs-title function_"},"getAreas"),s(`();
+    `),a("span",{class:"hljs-variable language_"},"console"),s("."),a("span",{class:"hljs-title function_"},"log"),s(`(areas);
+  }
+`)]),a("span",{class:"hljs-tag"},[s("</"),a("span",{class:"hljs-name"},"script"),s(">")])])],-1),v={__name:"index",setup(i){return(t,n)=>(c(),o("div",u,[A,C,B,e(_(d),{code:"%3Ctemplate%3E%0A%20%20%3Cdiv%3E%0A%20%20%20%20%E5%9C%A8console%E4%B8%AD%E6%9F%A5%E7%9C%8B%0A%20%20%20%20%3Cm-button%20%40click%3D%22handleCheck%22%3E%E6%A3%80%E9%AA%8C%3C%2Fm-button%3E%0A%20%20%3C%2Fdiv%3E%0A%3C%2Ftemplate%3E%0A%3Cscript%20lang%3D%22ts%22%20setup%3E%0A%20%20import%20%7B%20initBridge%2C%20Bridge%20%7D%20from%20'%40%2Fmain'%0A%0A%20%20initBridge()%0A%0A%20%20async%20function%20handleCheck()%20%7B%0A%20%20%20%20let%20areas%20%3D%20await%20Bridge.getAreas()%3B%0A%20%20%20%20console.log(areas)%3B%0A%20%20%7D%0A%3C%2Fscript%3E"},{code:l(()=>[f]),default:l(()=>[e(g)]),_:1})]))}};export{v as default};
