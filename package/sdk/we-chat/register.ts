@@ -11,6 +11,7 @@ import { redirectTo } from './redirect-to';
 // import { updateTimelineShareData } from './update-timeline-share-data';
 
 export function register() {
+  console.log('[Bridge] we-chat register start', new Date().toISOString());
   Bridge.navigateTo = navigateTo;
   Bridge.navigateBack = navigateBack;
   Bridge.redirectTo = redirectTo;
@@ -20,4 +21,5 @@ export function register() {
   Bridge.openLocation = openLocation;
   // Bridge.updateAppMessageShareData = updateAppMessageShareData;
   // Bridge.updateTimelineShareData = updateTimelineShareData;
+  console.log('[Bridge] we-chat register done', new Date().toISOString());
 }

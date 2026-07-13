@@ -82,15 +82,19 @@ function setConfig(arg: InitWxConfigType) {
 }
 
 export async function init(arg: InitWxConfigType) {
+  console.log('[Bridge] we-chat init start', new Date().toISOString(), 'hasRequestUrl:', !!arg.requestUrl);
   await downloadCdn(URL_PATH);
+  console.log('[Bridge] we-chat CDN downloaded', new Date().toISOString());
 
   if (arg.requestUrl) {
     await setConfig(arg);
 
     wx.ready(function () {
+      console.log('[Bridge] we-chat wx.ready fired', new Date().toISOString());
       register();
     });
   } else {
+    console.log('[Bridge] we-chat register (no config)', new Date().toISOString());
     register();
   }
 }

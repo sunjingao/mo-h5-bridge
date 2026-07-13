@@ -1,5 +1,12 @@
 import { BridgeReceive } from './sdk/mobile/bridge-receive';
 
+function _stub(name: string) {
+  return (...args: any[]) => {
+    console.warn(`[Bridge] ${name} called before init`, new Date().toISOString(), 'args:', args);
+    console.warn(`[Bridge] ${name} call stack:`, new Error().stack);
+  };
+}
+
 // 桥接对象，供外部使用，这里需要表示出全部内容，既供外部调用，也展示出来方便查看
 const Bridge: {
   // ----------------------- 各端通用 -----------------------
@@ -50,11 +57,11 @@ const Bridge: {
   // 参数：无
   getAreas: any;
   // 范围：客户端(小程序调用不起来)
-  // 功能：自定义“分享给朋友”及“分享到QQ”按钮的分享内容
+  // 功能：自定义"分享给朋友"及"分享到QQ"按钮的分享内容
   // 参数：wx
   updateAppMessageShareData: any;
   // 范围：客户端(小程序调用不起来)
-  // 功能：自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容
+  // 功能：自定义"分享到朋友圈"及"分享到QQ空间"按钮的分享内容
   // 参数：wx
   updateTimelineShareData: any;
   // 范围：客户端
@@ -62,48 +69,19 @@ const Bridge: {
   // 参数：无
   getArea: any;
 } = {
-  navigateTo: () => {
-    console.warn('Bridge:navigateTo not init');
-  },
-  navigateBack: () => {
-    console.warn('Bridge:navigateBack not init');
-  },
-  switchTab: () => {
-    console.warn('Bridge:switchTab not init');
-  },
-  getLocation: () => {
-    console.warn('Bridge:getLocation not init');
-  },
-  openLocation: () => {
-    console.warn('Bridge:openLocation not init');
-  },
-  postMessage: () => {
-    console.warn('Bridge:postMessage not init');
-  },
-  onMessage: () => {
-    console.warn('Bridge:onMessage not init');
-  },
-  authorize: () => {
-    console.warn('Bridge:authorize not init');
-  },
-  getToken: () => {
-    console.warn('Bridge:getToken not init');
-  },
-  gotoOrderDetail: () => {
-    console.warn('Bridge:gotoOrderDetail not init');
-  },
-  getAreas: () => {
-    console.warn('Bridge:getAreas not init');
-  },
-  updateAppMessageShareData: () => {
-    console.warn('Bridge:updateAppMessageShareData not init');
-  },
-  updateTimelineShareData: () => {
-    console.warn('Bridge:updateTimelineShareData not init');
-  },
-  getArea: () => {
-    console.warn('Bridge:getArea not init');
-  }
+  navigateTo: _stub('navigateTo'),
+  navigateBack: _stub('navigateBack'),
+  switchTab: _stub('switchTab'),
+  getLocation: _stub('getLocation'),
+  openLocation: _stub('openLocation'),
+  postMessage: _stub('postMessage'),
+  onMessage: _stub('onMessage'),
+  getToken: _stub('getToken'),
+  gotoOrderDetail: _stub('gotoOrderDetail'),
+  getAreas: _stub('getAreas'),
+  updateAppMessageShareData: _stub('updateAppMessageShareData'),
+  updateTimelineShareData: _stub('updateTimelineShareData'),
+  getArea: _stub('getArea')
 };
 
 export { Bridge, BridgeReceive };
