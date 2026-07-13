@@ -11,7 +11,4 @@ cd .. && \
 vite build --mode package && \
 vite build --mode doc && \
 node ./build/order/git.js && \
-cd ./dist/ && \
-node ./build/git.js && \
-cd .. && \
-npm publish || node ./order/delete-version.js || node ./build/order/delete-version.js
+npm publish || node ./build/order/delete-version.js

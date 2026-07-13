@@ -1,7 +1,7 @@
 {
   "name": "mo-h5-bridge",
   "private": false,
-  "version": "0.0.37",
+  "version": "0.0.38",
   "type": "module",
   "main": "./dist/mo-h5-bridge.js",
   "types": "./dist/index.d.ts",

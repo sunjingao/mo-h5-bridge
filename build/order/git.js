@@ -11,7 +11,7 @@ async function runCommand() {
         console.log(`整体 add 完成`)
         await execPromise(`git commit -m "${lastestContent}"`)
         console.log(`整体 commit 完成`)
-        await execPromise(`git push -u origin master`)
+        await execPromise(`git push -u origin main`)
         console.log(`整体 push 完成`)
     } catch (error) {
         console.error('execPromise error:', error);
