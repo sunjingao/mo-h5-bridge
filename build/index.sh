@@ -50,9 +50,10 @@ if [ "$UserInput" != "y" ]; then
 fi
 
 # ========== 执行发布流程 ==========
+ORIGINAL_VERSION=$(node -e "console.log(require('../package.json').version)") && \
 node ./order/add-version.js && \
 cd .. && \
 vite build --mode package && \
 vite build --mode doc && \
 node ./build/order/git.js && \
-npm publish || node ./build/order/delete-version.js
+npm publish || node ./build/order/delete-version.js "$ORIGINAL_VERSION"

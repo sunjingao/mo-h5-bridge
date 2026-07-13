@@ -350,7 +350,12 @@ function N(i) {
   return e(), Promise.resolve();
 }
 async function _(i) {
-  console.log("[Bridge] we-chat init start", (/* @__PURE__ */ new Date()).toISOString(), "hasRequestUrl:", !!i.requestUrl), await w(x), console.log("[Bridge] we-chat CDN downloaded", (/* @__PURE__ */ new Date()).toISOString()), i.requestUrl ? (await N(i), wx.ready(function() {
+  console.log(
+    "[Bridge] we-chat init start",
+    (/* @__PURE__ */ new Date()).toISOString(),
+    "hasRequestUrl:",
+    !!i.requestUrl
+  ), await w(x), console.log("[Bridge] we-chat CDN downloaded", (/* @__PURE__ */ new Date()).toISOString()), i.requestUrl ? (await N(i), wx.ready(function() {
     console.log("[Bridge] we-chat wx.ready fired", (/* @__PURE__ */ new Date()).toISOString()), f();
   })) : (console.log("[Bridge] we-chat register (no config)", (/* @__PURE__ */ new Date()).toISOString()), f());
 }

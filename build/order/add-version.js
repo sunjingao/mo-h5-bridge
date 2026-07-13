@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const packageJsonPath = path.join(__dirname, '../../package.json');
 
 // 读取package.json文件
-const packageJson = JSON.parse(fs.readFileSync(packageJsonPath));
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 
 // 获取当前版本号
 export const currentVersion = packageJson.version;

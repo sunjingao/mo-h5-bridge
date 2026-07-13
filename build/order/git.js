@@ -19,6 +19,7 @@ async function runCommand() {
         if (error.stderr && error.stderr.includes('Authentication failed')) {
             console.error('GitHub 认证失败，请运行: gh auth login --hostname github.com --web');
         }
+        process.exit(1);
     }
 }
 
