@@ -1,4 +1,4 @@
-import { Bridge, flushPendingCalls } from '../../const';
+import { Bridge } from '../../const';
 import { postMessage } from './post-message';
 import { onMessage } from './on-message';
 import { getLocation } from './get-location';
@@ -18,6 +18,4 @@ export function register() {
   Bridge.navigateBack = navigateBack;
   Bridge.redirectTo = redirectTo;
   Bridge.switchTab = switchTab;
-
-  flushPendingCalls();
 }

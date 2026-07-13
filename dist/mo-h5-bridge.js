@@ -1,4 +1,4 @@
-function w(t) {
+function f(t) {
   return new Promise((e) => {
     const i = document.createElement("script");
     i.type = "text/javascript", i.src = t, i.onload = function() {
@@ -6,7 +6,7 @@ function w(t) {
     }, document.head.appendChild(i);
   });
 }
-const r = navigator.userAgent, h = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(r), y = /Windows|Macintosh|Linux/i.test(r) && !h, c = {
+const r = navigator.userAgent, m = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(r), w = /Windows|Macintosh|Linux/i.test(r) && !m, s = {
   WeChatMini: "WeChatMini",
   // 微信小程序
   AlipayMini: "AlipayMini",
@@ -19,24 +19,24 @@ const r = navigator.userAgent, h = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IE
   // 移动端
   Pc: "Pc"
   // pc端
-}, l = {
-  ["is" + c.WeChatMini]: /miniProgram/i.test(r),
+}, g = {
+  ["is" + s.WeChatMini]: /miniProgram/i.test(r),
   // 微信小程序
-  ["is" + c.AlipayMini]: /AlipayClient.*miniProgram/i.test(r),
+  ["is" + s.AlipayMini]: /AlipayClient.*miniProgram/i.test(r),
   // 支付宝小程序
-  ["is" + c.Android]: /Android/i.test(r),
+  ["is" + s.Android]: /Android/i.test(r),
   // andorid
-  ["is" + c.Ios]: /iPhone|iPad|iPod/i.test(r),
+  ["is" + s.Ios]: /iPhone|iPad|iPod/i.test(r),
   // ios
-  ["is" + c.Mobile]: h,
-  ["is" + c.Pc]: y
-}, P = "https://appx/web-view.min.js", M = {
+  ["is" + s.Mobile]: m,
+  ["is" + s.Pc]: w
+}, h = "https://appx/web-view.min.js", v = {
   // 用于在外勤app中，app返回到库存管理页面中，刷新库存管理页面
   refreshCar: void 0
 };
-class T {
+class y {
   constructor() {
-    this.map = /* @__PURE__ */ new Map(), Object.keys(M).forEach((e) => {
+    this.map = /* @__PURE__ */ new Map(), Object.keys(v).forEach((e) => {
       this.map.set(e, /* @__PURE__ */ new Set());
     });
   }
@@ -48,8 +48,8 @@ class T {
   delete(e, i) {
     if (!this.map.has(e))
       return !1;
-    const n = this.map.get(e), o = n.delete(i);
-    return n.size === 0 && this.map.delete(e), o;
+    const n = this.map.get(e), a = n.delete(i);
+    return n.size === 0 && this.map.delete(e), a;
   }
   // 检查指定键的集合是否包含元素
   has(e, i) {
@@ -90,47 +90,63 @@ class T {
     });
   }
 }
-const B = new T(), d = [];
-function a(t) {
-  return (...e) => (console.warn(`Bridge:${t} not init`), new Promise((i, n) => {
-    d.push({ name: t, args: e, resolve: i, reject: n });
-  }));
-}
-function p() {
-  if (d.length === 0)
-    return;
-  d.splice(0).forEach(({ name: e, args: i, resolve: n, reject: o }) => {
-    s[e](...i).then(n).catch(o);
-  });
-}
-const s = {
-  navigateTo: a("navigateTo"),
-  navigateBack: a("navigateBack"),
-  switchTab: a("switchTab"),
-  getLocation: a("getLocation"),
-  openLocation: a("openLocation"),
-  postMessage: a("postMessage"),
-  onMessage: a("onMessage"),
-  getToken: a("getToken"),
-  gotoOrderDetail: a("gotoOrderDetail"),
-  getAreas: a("getAreas"),
-  updateAppMessageShareData: a("updateAppMessageShareData"),
-  updateTimelineShareData: a("updateTimelineShareData"),
-  getArea: a("getArea")
+const B = new y(), o = {
+  navigateTo: () => {
+    console.warn("Bridge:navigateTo not init");
+  },
+  navigateBack: () => {
+    console.warn("Bridge:navigateBack not init");
+  },
+  switchTab: () => {
+    console.warn("Bridge:switchTab not init");
+  },
+  getLocation: () => {
+    console.warn("Bridge:getLocation not init");
+  },
+  openLocation: () => {
+    console.warn("Bridge:openLocation not init");
+  },
+  postMessage: () => {
+    console.warn("Bridge:postMessage not init");
+  },
+  onMessage: () => {
+    console.warn("Bridge:onMessage not init");
+  },
+  authorize: () => {
+    console.warn("Bridge:authorize not init");
+  },
+  getToken: () => {
+    console.warn("Bridge:getToken not init");
+  },
+  gotoOrderDetail: () => {
+    console.warn("Bridge:gotoOrderDetail not init");
+  },
+  getAreas: () => {
+    console.warn("Bridge:getAreas not init");
+  },
+  updateAppMessageShareData: () => {
+    console.warn("Bridge:updateAppMessageShareData not init");
+  },
+  updateTimelineShareData: () => {
+    console.warn("Bridge:updateTimelineShareData not init");
+  },
+  getArea: () => {
+    console.warn("Bridge:getArea not init");
+  }
 };
-async function b(t) {
+async function P(t) {
   return new Promise((e) => {
     my.postMessage({
       ...t
     }), e();
   });
 }
-async function L(t) {
+async function M(t) {
   return new Promise((e) => {
     my.onMessage = t, e();
   });
 }
-async function A(t) {
+async function T(t) {
   return new Promise((e, i) => {
     my.getLocation({
       ...t,
@@ -143,7 +159,7 @@ async function A(t) {
     });
   });
 }
-async function C(t) {
+async function b(t) {
   return new Promise((e, i) => {
     my.openLocation({
       ...t,
@@ -156,7 +172,7 @@ async function C(t) {
     });
   });
 }
-async function W(t) {
+async function L(t) {
   return new Promise((e, i) => {
     my.navigateTo({
       ...t,
@@ -169,7 +185,7 @@ async function W(t) {
     });
   });
 }
-async function J(t) {
+async function A(t) {
   return new Promise((e, i) => {
     my.navigateBack({
       ...t,
@@ -182,7 +198,7 @@ async function J(t) {
     });
   });
 }
-async function S(t) {
+async function C(t) {
   return new Promise((e, i) => {
     my.redirectTo({
       ...t,
@@ -195,7 +211,7 @@ async function S(t) {
     });
   });
 }
-function x(t) {
+function W(t) {
   return new Promise((e, i) => {
     my.switchTab({
       ...t,
@@ -208,14 +224,14 @@ function x(t) {
     });
   });
 }
-function E() {
-  s.postMessage = b, s.onMessage = L, s.getLocation = A, s.openLocation = C, s.navigateTo = W, s.navigateBack = J, s.redirectTo = S, s.switchTab = x, p();
+function J() {
+  o.postMessage = P, o.onMessage = M, o.getLocation = T, o.openLocation = b, o.navigateTo = L, o.navigateBack = A, o.redirectTo = C, o.switchTab = W;
 }
-async function $() {
-  await w(P), E();
+async function x() {
+  await f(h), J();
 }
-const V = "https://res.wx.qq.com/open/js/jweixin-1.6.0.js";
-async function I(t = {}) {
+const S = "https://res.wx.qq.com/open/js/jweixin-1.6.0.js";
+async function E(t = {}) {
   return new Promise((e, i) => {
     wx.getLocation({
       ...t,
@@ -228,7 +244,7 @@ async function I(t = {}) {
     });
   });
 }
-async function j(t) {
+async function V(t) {
   return new Promise((e, i) => {
     wx.openLocation({
       ...t,
@@ -241,7 +257,7 @@ async function j(t) {
     });
   });
 }
-async function k(t) {
+async function $(t) {
   return new Promise((e, i) => {
     wx.miniProgram.postMessage({
       ...t,
@@ -254,7 +270,7 @@ async function k(t) {
     });
   });
 }
-async function R(t) {
+async function I(t) {
   return new Promise((e, i) => {
     wx.miniProgram.navigateTo({
       ...t,
@@ -267,7 +283,7 @@ async function R(t) {
     });
   });
 }
-async function D(t) {
+async function j(t) {
   return new Promise((e, i) => {
     wx.miniProgram.navigateBack({
       ...t,
@@ -280,7 +296,7 @@ async function D(t) {
     });
   });
 }
-async function O(t) {
+async function R(t) {
   return new Promise((e, i) => {
     wx.miniProgram.switchTab({
       ...t,
@@ -293,7 +309,7 @@ async function O(t) {
     });
   });
 }
-async function N(t) {
+async function k(t) {
   return new Promise((e, i) => {
     wx.miniProgram.redirectTo({
       ...t,
@@ -306,18 +322,18 @@ async function N(t) {
     });
   });
 }
-function m() {
-  s.navigateTo = R, s.navigateBack = D, s.redirectTo = N, s.switchTab = O, s.postMessage = k, s.getLocation = I, s.openLocation = j, p();
+function l() {
+  o.navigateTo = I, o.navigateBack = j, o.redirectTo = k, o.switchTab = R, o.postMessage = $, o.getLocation = E, o.openLocation = V;
 }
-async function _(t) {
+async function D(t) {
   const e = location.href.split("#")[0];
   return await fetch(`${t.requestUrl}?url=${e}`, {
     method: "GET"
   }).then((i) => i.json());
 }
-function q(t) {
+function O(t) {
   async function e() {
-    const i = await _(t);
+    const i = await D(t);
     console.log({
       debug: !1,
       appId: i.data.appId,
@@ -356,12 +372,12 @@ function q(t) {
   }
   return e(), Promise.resolve();
 }
-async function H(t) {
-  await w(V), t.requestUrl ? (await q(t), wx.ready(function() {
-    m();
-  })) : m();
+async function N(t) {
+  await f(S), t.requestUrl ? (await O(t), wx.ready(function() {
+    l();
+  })) : l();
 }
-const v = l.isAndroid, U = (t) => {
+const p = g.isAndroid, _ = (t) => {
   window.WebViewJavascriptBridge ? t(window.WebViewJavascriptBridge) : document.addEventListener(
     "WebViewJavascriptBridgeReady",
     function() {
@@ -369,7 +385,7 @@ const v = l.isAndroid, U = (t) => {
     },
     !1
   );
-}, F = (t) => {
+}, q = (t) => {
   if (window.WebViewJavascriptBridge)
     return t(window.WebViewJavascriptBridge);
   if (window.WVJBCallbacks)
@@ -380,18 +396,18 @@ const v = l.isAndroid, U = (t) => {
     document.documentElement.removeChild(e);
   }, 0);
 };
-window.setupWebViewJavascriptBridge = v ? U : F;
-v && window.setupWebViewJavascriptBridge(function(t) {
+window.setupWebViewJavascriptBridge = p ? _ : q;
+p && window.setupWebViewJavascriptBridge(function(t) {
   t.init(function(e, i) {
     i("JS 返回给原生的消息内容");
   });
 });
-async function G() {
+async function H() {
   return new Promise((t) => {
     window.setupWebViewJavascriptBridge((e) => {
-      Object.keys(s).forEach((i) => {
-        s[i] = function(n) {
-          return new Promise((o, g) => {
+      Object.keys(o).forEach((i) => {
+        o[i] = function(n) {
+          return new Promise((a, d) => {
             e.callHandler(
               "sendToNative",
               // 传递给原生的参数
@@ -399,10 +415,10 @@ async function G() {
                 type: i,
                 value: n
               },
-              (f) => {
-                console.log("fromNativeParams 1", f);
-                const u = typeof f == "string" ? JSON.parse(f) : f;
-                console.log("fromNativeParams 2", u), u.type === "success" ? (console.log("fromNativeParams 3", u.value), o(u.value)) : g(u.value);
+              (u) => {
+                console.log("fromNativeParams 1", u);
+                const c = typeof u == "string" ? JSON.parse(u) : u;
+                console.log("fromNativeParams 2", c), c.type === "success" ? (console.log("fromNativeParams 3", c.value), a(c.value)) : d(c.value);
               }
             );
           });
@@ -411,21 +427,21 @@ async function G() {
         "receiveFromNative",
         (i, n) => {
           console.log(1111, i);
-          const o = typeof i == "string" ? JSON.parse(i) : i;
-          console.log(2222, o), B.get(o.type).forEach((g) => {
-            console.log(3333, o.value), g(o.value);
+          const a = typeof i == "string" ? JSON.parse(i) : i;
+          console.log(2222, a), B.get(a.type).forEach((d) => {
+            console.log(3333, a.value), d(a.value);
           }), n();
         }
-      ), p(), t();
+      ), t();
     });
   });
 }
-async function K(t) {
-  l.isAlipayMini ? await $() : l.isWeChatMini ? await H(t) : l.isMobile && await G();
+async function U(t) {
+  g.isAlipayMini ? await x() : g.isWeChatMini ? await N(t) : g.isMobile && await H();
 }
 export {
-  s as Bridge,
+  o as Bridge,
   B as BridgeReceive,
-  K as initBridge
+  U as initBridge
 };
 //# sourceMappingURL=mo-h5-bridge.js.map

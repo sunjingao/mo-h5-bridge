@@ -1,4 +1,4 @@
-import { Bridge, flushPendingCalls } from '../../const';
+import { Bridge } from '../../const';
 
 import { getLocation } from './get-location';
 import { openLocation } from './open-location';
@@ -20,6 +20,4 @@ export function register() {
   Bridge.openLocation = openLocation;
   // Bridge.updateAppMessageShareData = updateAppMessageShareData;
   // Bridge.updateTimelineShareData = updateTimelineShareData;
-
-  flushPendingCalls();
 }
