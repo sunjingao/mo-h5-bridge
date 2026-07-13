@@ -1,5 +1,5 @@
 import './depend';
-import { Bridge } from '../../const';
+import { Bridge, flushPendingCalls } from '../../const';
 import { BridgeReceive } from './bridge-receive.ts';
 
 export async function init() {
@@ -59,6 +59,7 @@ export async function init() {
         }
       );
 
+      flushPendingCalls();
       outResolve();
     });
   });
