@@ -14,12 +14,10 @@ async function runCommand() {
         await execPromise(`git push -u origin main`)
         console.log(`整体 push 完成`)
     } catch (error) {
-        console.error('execPromise error:', error);
-        // git push 失败时尝试引导登录
-        if (error.stderr && error.stderr.includes('Authentication failed')) {
-            console.error('GitHub 认证失败，请运行: gh auth login --hostname github.com --web');
-        }
-        process.exit(1);
+        console.error('Git 操作失败，GitHub 可能无法访问，已跳过:');
+        console.error(error.stderr || error.message);
+        console.log('可稍后手动推送: git push -u origin main');
+        // 不阻塞流程，继续执行 npm publish
     }
 }
 

@@ -29,18 +29,9 @@ check_github_auth() {
 }
 
 if ! check_github_auth; then
-    echo "GitHub 未认证，正在打开登录页面..."
-    if ! command -v gh &>/dev/null; then
-        echo "正在安装 GitHub CLI..."
-        brew install gh
-    fi
-    gh auth login --hostname github.com --web
-    if ! check_github_auth; then
-        echo "GitHub 认证仍然失败，请手动处理"
-        exit 1
-    fi
+    echo "GitHub 未认证或无法访问，将跳过 git push 步骤"
+    echo "可稍后手动推送: git push -u origin main"
 fi
-echo "GitHub 认证成功"
 
 # ========== 确认文档更新 ==========
 read -p "是否已经更新开发文档(y/n)? " UserInput
