@@ -32,6 +32,10 @@ const Bridge: {
   // 功能：发送消息（wechat小程序中只能在h5退出项目时才能触发）
   // 参数：wx
   postMessage: any;
+  // 范围：wx、my
+  // 功能：接收消息（wechat小程序中只能在h5退出项目时才能触发）
+  // 参数：wx
+  onMessage: any;
   // ----------------------- android、ios -----------------------
   // 范围：android、ios
   // 功能：获取token
@@ -58,19 +62,48 @@ const Bridge: {
   // 参数：无
   getArea: any;
 } = {
-  navigateTo: undefined,
-  navigateBack: undefined,
-  switchTab: undefined,
-  getLocation: undefined,
-  openLocation: undefined,
-  postMessage: undefined,
-  authorize: undefined,
-  getToken: undefined,
-  gotoOrderDetail: undefined,
-  getAreas: undefined,
-  updateAppMessageShareData: undefined,
-  updateTimelineShareData: undefined,
-  getArea: undefined
+  navigateTo: () => {
+    console.warn('Bridge:navigateTo not init');
+  },
+  navigateBack: () => {
+    console.warn('Bridge:navigateBack not init');
+  },
+  switchTab: () => {
+    console.warn('Bridge:switchTab not init');
+  },
+  getLocation: () => {
+    console.warn('Bridge:getLocation not init');
+  },
+  openLocation: () => {
+    console.warn('Bridge:openLocation not init');
+  },
+  postMessage: () => {
+    console.warn('Bridge:postMessage not init');
+  },
+  onMessage: () => {
+    console.warn('Bridge:onMessage not init');
+  },
+  authorize: () => {
+    console.warn('Bridge:authorize not init');
+  },
+  getToken: () => {
+    console.warn('Bridge:getToken not init');
+  },
+  gotoOrderDetail: () => {
+    console.warn('Bridge:gotoOrderDetail not init');
+  },
+  getAreas: () => {
+    console.warn('Bridge:getAreas not init');
+  },
+  updateAppMessageShareData: () => {
+    console.warn('Bridge:updateAppMessageShareData not init');
+  },
+  updateTimelineShareData: () => {
+    console.warn('Bridge:updateTimelineShareData not init');
+  },
+  getArea: () => {
+    console.warn('Bridge:getArea not init');
+  }
 };
 
 export { Bridge, BridgeReceive };

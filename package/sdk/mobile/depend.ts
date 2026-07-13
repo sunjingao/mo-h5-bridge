@@ -81,7 +81,6 @@ if (isAndroid) {
   window.setupWebViewJavascriptBridge(function (bridge) {
     // 注册 H5 界面的默认接收函数（与安卓交互时，不注册这个事件无法接收回调函数）
     bridge.init(function (msg, responseCallback) {
-      alert(msg);
       responseCallback('JS 返回给原生的消息内容');
     });
   });

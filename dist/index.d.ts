@@ -6,6 +6,7 @@ export declare const Bridge: {
     getLocation: any;
     openLocation: any;
     postMessage: any;
+    onMessage: any;
     getToken: any;
     gotoOrderDetail: any;
     getAreas: any;

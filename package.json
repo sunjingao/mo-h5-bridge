@@ -1,13 +1,13 @@
 {
   "name": "mo-h5-bridge",
   "private": false,
-  "version": "0.0.24",
+  "version": "0.0.37",
   "type": "module",
   "main": "./dist/mo-h5-bridge.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite --mode dev",
-    "pack": "cd ./build && index.bat",
+    "pack": "cd ./build && ./index.sh",
     "doc": "vite build --mode doc",
     "build": "vite build --mode package"
   },
