@@ -82,7 +82,12 @@ function setConfig(arg: InitWxConfigType) {
 }
 
 export async function init(arg: InitWxConfigType) {
-  console.log('[Bridge] we-chat init start', new Date().toISOString(), 'hasRequestUrl:', !!arg.requestUrl);
+  console.log(
+    '[Bridge] we-chat init start',
+    new Date().toISOString(),
+    'hasRequestUrl:',
+    !!arg.requestUrl
+  );
   await downloadCdn(URL_PATH);
   console.log('[Bridge] we-chat CDN downloaded', new Date().toISOString());
 
