@@ -15,6 +15,10 @@ async function runCommand() {
         console.log(`整体 push 完成`)
     } catch (error) {
         console.error('execPromise error:', error);
+        // git push 失败时尝试引导登录
+        if (error.stderr && error.stderr.includes('Authentication failed')) {
+            console.error('GitHub 认证失败，请运行: gh auth login --hostname github.com --web');
+        }
     }
 }
 
