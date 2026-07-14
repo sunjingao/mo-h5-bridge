@@ -5,7 +5,10 @@ echo "========== 检查 npm 登录状态 =========="
 
 # 用本地 token 检查登录状态，避免网络超时卡住
 check_npm_auth() {
-    grep -q "//registry.npmjs.org/:_authToken=" ~/.npmrc 2>/dev/null
+    npm whoami &>/dev/null &
+    local pid=$!
+    (sleep 15 && kill $pid 2>/dev/null) &
+    wait $pid 2>/dev/null
 }
 
 if ! check_npm_auth; then
