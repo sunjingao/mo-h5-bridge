@@ -16,27 +16,15 @@ async function getConfig(arg: InitWxConfigType) {
   });
 }
 
-function setConfig(arg: InitWxConfigType) {
-  async function initConfig() {
+async function setConfig(arg: InitWxConfigType) {
+  try {
     const configData = await getConfig(arg);
 
-    console.log({
-      debug: false,
+    console.log('[Bridge] wx.config with:', {
       appId: configData.data.appId,
       timestamp: configData.data.timestamp,
       nonceStr: configData.data.nonceStr,
-      signature: configData.data.signature,
-      jsApiList: [
-        // 获取当前的地理位置、速度：
-        // 微信小程序与支付宝同名
-        'getLocation',
-        // 使用微信内置地图查看位置：
-        // 微信小程序与支付宝同名
-        'openLocation',
-        'startRecord',
-        'chooseImage',
-        'scanQRCode'
-      ]
+      signature: configData.data.signature
     });
 
     wx.config({
@@ -45,40 +33,11 @@ function setConfig(arg: InitWxConfigType) {
       timestamp: configData.data.timestamp,
       nonceStr: configData.data.nonceStr,
       signature: configData.data.signature,
-      jsApiList: [
-        // 获取当前的地理位置、速度：
-        // 微信小程序与支付宝同名
-        'getLocation',
-        // 使用微信内置地图查看位置：
-        // 微信小程序与支付宝同名
-        'openLocation',
-        'startRecord',
-        'chooseImage',
-        'scanQRCode'
-      ]
+      jsApiList: ['getLocation', 'openLocation', 'startRecord', 'chooseImage', 'scanQRCode']
     });
+  } catch (e) {
+    console.error('[Bridge] setConfig failed:', e);
   }
-
-  initConfig();
-
-  // // wx.error只需要注册一次，每次失败间隔会重新初始化
-  // wx.error((res) => {
-  //   console.error('JS-SDK 注册失败：', res.errorMsg);
-  //   setTimeout(() => {
-  //     initConfig();
-  //   }, 1000 * 3);
-  // });
-
-  // 签名5min会过期，所以需要定时更新签名
-  // setInterval(
-  //   async (res) => {
-  //     console.log('js-sdk 重新初始化', res);
-  //     initConfig();
-  //   },
-  //   1000 * 60 * 4
-  // );
-
-  return Promise.resolve();
 }
 
 export async function init(arg: InitWxConfigType) {
@@ -94,9 +53,30 @@ export async function init(arg: InitWxConfigType) {
   if (arg.requestUrl) {
     await setConfig(arg);
 
-    wx.ready(function () {
-      console.log('[Bridge] we-chat wx.ready fired', new Date().toISOString());
-      register();
+    await new Promise<void>((resolve) => {
+      let resolved = false;
+      const done = () => {
+        if (resolved) return;
+        resolved = true;
+        clearTimeout(timeout);
+        register();
+        resolve();
+      };
+
+      const timeout = setTimeout(() => {
+        console.warn('[Bridge] wx.ready timeout (5s), registering anyway');
+        done();
+      }, 5000);
+
+      wx.ready(function () {
+        console.log('[Bridge] we-chat wx.ready fired', new Date().toISOString());
+        done();
+      });
+
+      wx.error(function (res: any) {
+        console.error('[Bridge] wx.error:', res);
+        done();
+      });
     });
   } else {
     console.log('[Bridge] we-chat register (no config)', new Date().toISOString());

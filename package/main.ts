@@ -5,12 +5,18 @@ import { init as mobileInit } from './sdk/mobile/index';
 import { Bridge, BridgeReceive } from './const';
 
 async function initBridge(arg: void | InitWxConfigType) {
-  if (RUN_ENV.isAlipayMini) {
-    await alipayInit();
-  } else if (RUN_ENV.isWeChatMini) {
-    await weChatInit(arg as InitWxConfigType);
-  } else if (RUN_ENV.isMobile) {
-    await mobileInit();
+  try {
+    if (RUN_ENV.isAlipayMini) {
+      await alipayInit();
+    } else if (RUN_ENV.isWeChatMini) {
+      await weChatInit(arg as InitWxConfigType);
+    } else if (RUN_ENV.isMobile) {
+      await mobileInit();
+    } else {
+      console.warn('[Bridge] unknown env, RUN_ENV:', RUN_ENV);
+    }
+  } catch (e) {
+    console.error('[Bridge] initBridge failed:', e);
   }
 }
 

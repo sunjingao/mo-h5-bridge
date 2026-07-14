@@ -1,12 +1,12 @@
-function w(i) {
+function w(t) {
   return new Promise((e) => {
-    const t = document.createElement("script");
-    t.type = "text/javascript", t.src = i, t.onload = function() {
+    const i = document.createElement("script");
+    i.type = "text/javascript", i.src = t, i.onload = function() {
       e();
-    }, document.head.appendChild(t);
+    }, document.head.appendChild(i);
   });
 }
-const c = navigator.userAgent, p = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(c), h = /Windows|Macintosh|Linux/i.test(c) && !p, r = {
+const c = navigator.userAgent, m = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(c), h = /Windows|Macintosh|Linux/i.test(c) && !m, r = {
   WeChatMini: "WeChatMini",
   // 微信小程序
   AlipayMini: "AlipayMini",
@@ -28,32 +28,32 @@ const c = navigator.userAgent, p = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IE
   // andorid
   ["is" + r.Ios]: /iPhone|iPad|iPod/i.test(c),
   // ios
-  ["is" + r.Mobile]: p,
+  ["is" + r.Mobile]: m,
   ["is" + r.Pc]: h
 }, v = "https://appx/web-view.min.js", y = {
   // 用于在外勤app中，app返回到库存管理页面中，刷新库存管理页面
   refreshCar: void 0
 };
-class P {
+class B {
   constructor() {
     this.map = /* @__PURE__ */ new Map(), Object.keys(y).forEach((e) => {
       this.map.set(e, /* @__PURE__ */ new Set());
     });
   }
   // 添加元素到指定键的集合
-  add(e, t) {
-    return this.map.has(e) || this.map.set(e, /* @__PURE__ */ new Set()), this.map.get(e).add(t), this;
+  add(e, i) {
+    return this.map.has(e) || this.map.set(e, /* @__PURE__ */ new Set()), this.map.get(e).add(i), this;
   }
   // 从指定键的集合中删除元素
-  delete(e, t) {
+  delete(e, i) {
     if (!this.map.has(e))
       return !1;
-    const n = this.map.get(e), s = n.delete(t);
+    const n = this.map.get(e), s = n.delete(i);
     return n.size === 0 && this.map.delete(e), s;
   }
   // 检查指定键的集合是否包含元素
-  has(e, t) {
-    return this.map.has(e) && this.map.get(e).has(t);
+  has(e, i) {
+    return this.map.has(e) && this.map.get(e).has(i);
   }
   // 获取指定键的集合
   get(e) {
@@ -85,15 +85,15 @@ class P {
   }
   // 遍历每个键的集合
   forEach(e) {
-    this.map.forEach((t, n) => {
-      e(t, n, this.map);
+    this.map.forEach((i, n) => {
+      e(i, n, this.map);
     });
   }
 }
-const B = new P();
-function a(i) {
+const P = new B();
+function a(t) {
   return (...e) => {
-    console.warn(`[Bridge] ${i} called before init`, (/* @__PURE__ */ new Date()).toISOString(), "args:", e), console.warn(`[Bridge] ${i} call stack:`, new Error().stack);
+    console.warn(`[Bridge] ${t} called before init`, (/* @__PURE__ */ new Date()).toISOString(), "args:", e), console.warn(`[Bridge] ${t} call stack:`, new Error().stack);
   };
 }
 const o = {
@@ -111,319 +111,312 @@ const o = {
   updateTimelineShareData: a("updateTimelineShareData"),
   getArea: a("getArea")
 };
-async function M(i) {
+async function T(t) {
   return new Promise((e) => {
     my.postMessage({
-      ...i
+      ...t
     }), e();
   });
 }
-async function T(i) {
+async function M(t) {
   return new Promise((e) => {
-    my.onMessage = i, e();
+    my.onMessage = t, e();
   });
 }
-async function b(i) {
-  return new Promise((e, t) => {
+async function b(t) {
+  return new Promise((e, i) => {
     my.getLocation({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
-async function S(i) {
-  return new Promise((e, t) => {
+async function S(t) {
+  return new Promise((e, i) => {
     my.openLocation({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
-async function L(i) {
-  return new Promise((e, t) => {
+async function L(t) {
+  return new Promise((e, i) => {
     my.navigateTo({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
-async function A(i) {
-  return new Promise((e, t) => {
+async function A(t) {
+  return new Promise((e, i) => {
     my.navigateBack({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
-async function C(i) {
-  return new Promise((e, t) => {
+async function x(t) {
+  return new Promise((e, i) => {
     my.redirectTo({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
-function I(i) {
-  return new Promise((e, t) => {
+function C(t) {
+  return new Promise((e, i) => {
     my.switchTab({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
 function D() {
-  o.postMessage = M, o.onMessage = T, o.getLocation = b, o.openLocation = S, o.navigateTo = L, o.navigateBack = A, o.redirectTo = C, o.switchTab = I;
+  o.postMessage = T, o.onMessage = M, o.getLocation = b, o.openLocation = S, o.navigateTo = L, o.navigateBack = A, o.redirectTo = x, o.switchTab = C;
 }
-async function W() {
+async function I() {
   await w(v), D();
 }
-const x = "https://res.wx.qq.com/open/js/jweixin-1.6.0.js";
-async function J(i = {}) {
-  return new Promise((e, t) => {
+const W = "https://res.wx.qq.com/open/js/jweixin-1.6.0.js";
+async function E(t = {}) {
+  return new Promise((e, i) => {
     wx.getLocation({
-      ...i,
+      ...t,
       success: function(n) {
         console.log("success", n), e(n);
       },
       fail: function(n) {
-        console.log("fail", n), t(n);
+        console.log("fail", n), i(n);
       }
     });
   });
 }
-async function O(i) {
-  return new Promise((e, t) => {
+async function J(t) {
+  return new Promise((e, i) => {
     wx.openLocation({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
-async function E(i) {
-  return new Promise((e, t) => {
+async function O(t) {
+  return new Promise((e, i) => {
     wx.miniProgram.postMessage({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
-async function $(i) {
-  return new Promise((e, t) => {
+async function $(t) {
+  return new Promise((e, i) => {
     wx.miniProgram.navigateTo({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
-async function V(i) {
-  return new Promise((e, t) => {
+async function V(t) {
+  return new Promise((e, i) => {
     wx.miniProgram.navigateBack({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
-async function k(i) {
-  return new Promise((e, t) => {
+async function k(t) {
+  return new Promise((e, i) => {
     wx.miniProgram.switchTab({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
-async function R(i) {
-  return new Promise((e, t) => {
+async function N(t) {
+  return new Promise((e, i) => {
     wx.miniProgram.redirectTo({
-      ...i,
+      ...t,
       success: function(n) {
         e(n);
       },
       fail: function(n) {
-        t(n);
+        i(n);
       }
     });
   });
 }
 function f() {
-  console.log("[Bridge] we-chat register start", (/* @__PURE__ */ new Date()).toISOString()), o.navigateTo = $, o.navigateBack = V, o.redirectTo = R, o.switchTab = k, o.postMessage = E, o.getLocation = J, o.openLocation = O, console.log("[Bridge] we-chat register done", (/* @__PURE__ */ new Date()).toISOString());
+  console.log("[Bridge] we-chat register start", (/* @__PURE__ */ new Date()).toISOString()), o.navigateTo = $, o.navigateBack = V, o.redirectTo = N, o.switchTab = k, o.postMessage = O, o.getLocation = E, o.openLocation = J, console.log("[Bridge] we-chat register done", (/* @__PURE__ */ new Date()).toISOString());
 }
-async function j(i) {
+async function R(t) {
   const e = location.href.split("#")[0];
-  return await fetch(`${i.requestUrl}?url=${e}`, {
+  return await fetch(`${t.requestUrl}?url=${e}`, {
     method: "GET"
-  }).then((t) => t.json());
+  }).then((i) => i.json());
 }
-function N(i) {
-  async function e() {
-    const t = await j(i);
-    console.log({
-      debug: !1,
-      appId: t.data.appId,
-      timestamp: t.data.timestamp,
-      nonceStr: t.data.nonceStr,
-      signature: t.data.signature,
-      jsApiList: [
-        // 获取当前的地理位置、速度：
-        // 微信小程序与支付宝同名
-        "getLocation",
-        // 使用微信内置地图查看位置：
-        // 微信小程序与支付宝同名
-        "openLocation",
-        "startRecord",
-        "chooseImage",
-        "scanQRCode"
-      ]
+async function j(t) {
+  try {
+    const e = await R(t);
+    console.log("[Bridge] wx.config with:", {
+      appId: e.data.appId,
+      timestamp: e.data.timestamp,
+      nonceStr: e.data.nonceStr,
+      signature: e.data.signature
     }), wx.config({
       debug: !1,
-      appId: t.data.appId,
-      timestamp: t.data.timestamp,
-      nonceStr: t.data.nonceStr,
-      signature: t.data.signature,
-      jsApiList: [
-        // 获取当前的地理位置、速度：
-        // 微信小程序与支付宝同名
-        "getLocation",
-        // 使用微信内置地图查看位置：
-        // 微信小程序与支付宝同名
-        "openLocation",
-        "startRecord",
-        "chooseImage",
-        "scanQRCode"
-      ]
+      appId: e.data.appId,
+      timestamp: e.data.timestamp,
+      nonceStr: e.data.nonceStr,
+      signature: e.data.signature,
+      jsApiList: ["getLocation", "openLocation", "startRecord", "chooseImage", "scanQRCode"]
     });
+  } catch (e) {
+    console.error("[Bridge] setConfig failed:", e);
   }
-  return e(), Promise.resolve();
 }
-async function _(i) {
+async function _(t) {
   console.log(
     "[Bridge] we-chat init start",
     (/* @__PURE__ */ new Date()).toISOString(),
     "hasRequestUrl:",
-    !!i.requestUrl
-  ), await w(x), console.log("[Bridge] we-chat CDN downloaded", (/* @__PURE__ */ new Date()).toISOString()), i.requestUrl ? (await N(i), wx.ready(function() {
-    console.log("[Bridge] we-chat wx.ready fired", (/* @__PURE__ */ new Date()).toISOString()), f();
+    !!t.requestUrl
+  ), await w(W), console.log("[Bridge] we-chat CDN downloaded", (/* @__PURE__ */ new Date()).toISOString()), t.requestUrl ? (await j(t), await new Promise((e) => {
+    let i = !1;
+    const n = () => {
+      i || (i = !0, clearTimeout(s), f(), e());
+    }, s = setTimeout(() => {
+      console.warn("[Bridge] wx.ready timeout (5s), registering anyway"), n();
+    }, 5e3);
+    wx.ready(function() {
+      console.log("[Bridge] we-chat wx.ready fired", (/* @__PURE__ */ new Date()).toISOString()), n();
+    }), wx.error(function(u) {
+      console.error("[Bridge] wx.error:", u), n();
+    });
   })) : (console.log("[Bridge] we-chat register (no config)", (/* @__PURE__ */ new Date()).toISOString()), f());
 }
-const m = l.isAndroid, q = (i) => {
-  window.WebViewJavascriptBridge ? i(window.WebViewJavascriptBridge) : document.addEventListener(
+const p = l.isAndroid, U = (t) => {
+  window.WebViewJavascriptBridge ? t(window.WebViewJavascriptBridge) : document.addEventListener(
     "WebViewJavascriptBridgeReady",
     function() {
-      i(window.WebViewJavascriptBridge);
+      t(window.WebViewJavascriptBridge);
     },
     !1
   );
-}, U = (i) => {
+}, q = (t) => {
   if (window.WebViewJavascriptBridge)
-    return i(window.WebViewJavascriptBridge);
+    return t(window.WebViewJavascriptBridge);
   if (window.WVJBCallbacks)
-    return window.WVJBCallbacks.push(i);
-  window.WVJBCallbacks = [i];
+    return window.WVJBCallbacks.push(t);
+  window.WVJBCallbacks = [t];
   const e = document.createElement("iframe");
   e.style.display = "none", e.src = "wvjbscheme://__BRIDGE_LOADED__", document.documentElement.appendChild(e), setTimeout(function() {
     document.documentElement.removeChild(e);
   }, 0);
 };
-window.setupWebViewJavascriptBridge = m ? q : U;
-m && window.setupWebViewJavascriptBridge(function(i) {
-  i.init(function(e, t) {
-    t("JS 返回给原生的消息内容");
+window.setupWebViewJavascriptBridge = p ? U : q;
+p && window.setupWebViewJavascriptBridge(function(t) {
+  t.init(function(e, i) {
+    i("JS 返回给原生的消息内容");
   });
 });
 async function H() {
-  return new Promise((i) => {
+  return new Promise((t) => {
     window.setupWebViewJavascriptBridge((e) => {
-      Object.keys(o).forEach((t) => {
-        o[t] = function(n) {
-          return new Promise((s, d) => {
+      Object.keys(o).forEach((i) => {
+        o[i] = function(n) {
+          return new Promise((s, u) => {
             e.callHandler(
               "sendToNative",
               // 传递给原生的参数
               {
-                type: t,
+                type: i,
                 value: n
               },
-              (g) => {
-                console.log("fromNativeParams 1", g);
-                const u = typeof g == "string" ? JSON.parse(g) : g;
-                console.log("fromNativeParams 2", u), u.type === "success" ? (console.log("fromNativeParams 3", u.value), s(u.value)) : d(u.value);
+              (d) => {
+                console.log("fromNativeParams 1", d);
+                const g = typeof d == "string" ? JSON.parse(d) : d;
+                console.log("fromNativeParams 2", g), g.type === "success" ? (console.log("fromNativeParams 3", g.value), s(g.value)) : u(g.value);
               }
             );
           });
         };
       }), e.registerHandler(
         "receiveFromNative",
-        (t, n) => {
-          console.log(1111, t);
-          const s = typeof t == "string" ? JSON.parse(t) : t;
-          console.log(2222, s), B.get(s.type).forEach((d) => {
-            console.log(3333, s.value), d(s.value);
+        (i, n) => {
+          console.log(1111, i);
+          const s = typeof i == "string" ? JSON.parse(i) : i;
+          console.log(2222, s), P.get(s.type).forEach((u) => {
+            console.log(3333, s.value), u(s.value);
           }), n();
         }
-      ), i();
+      ), t();
     });
   });
 }
-async function F(i) {
-  l.isAlipayMini ? await W() : l.isWeChatMini ? await _(i) : l.isMobile && await H();
+async function F(t) {
+  try {
+    l.isAlipayMini ? await I() : l.isWeChatMini ? await _(t) : l.isMobile ? await H() : console.warn("[Bridge] unknown env, RUN_ENV:", l);
+  } catch (e) {
+    console.error("[Bridge] initBridge failed:", e);
+  }
 }
 export {
   o as Bridge,
-  B as BridgeReceive,
+  P as BridgeReceive,
   F as initBridge
 };
 //# sourceMappingURL=mo-h5-bridge.js.map
